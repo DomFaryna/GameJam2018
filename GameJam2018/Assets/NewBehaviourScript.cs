@@ -14,8 +14,9 @@ public class NewBehaviourScript : MonoBehaviour {
 	// Update is called once per frame
 	public void Update ()
 	{
-		int he = 2;
-		Console.Out.WriteLine(++he);
+		int heasdf = 2;
+		Console.Out.WriteLine(++heasdf);
+
 
 	}
 }
