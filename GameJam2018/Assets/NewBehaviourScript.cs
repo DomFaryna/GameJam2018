@@ -7,7 +7,7 @@ public class NewBehaviourScript : MonoBehaviour {
 
 	// Use this for initialization
 	public void Start () {
-		Console.Out.WriteLine("HELLO I AM A GOD!!!");
+		Console.Out.WriteLine("Whatever");
 		
 	}
 	
