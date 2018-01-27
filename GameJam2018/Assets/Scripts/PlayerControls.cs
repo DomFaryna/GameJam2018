@@ -8,21 +8,22 @@ public class PlayerControls : MonoBehaviour {
 
     protected virtual void attack() { }
 
-    protected void playerControl(Stats stats)
-    {
-	 
+    protected void playerControl() {
 
     }
 
-	// Use this for initialization
-	void Start ()
-	{
-		int he = 2;
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private Rigidbody2D rb2d;
+
+    private void Start()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+        rb2d.Add
+    }
 }
