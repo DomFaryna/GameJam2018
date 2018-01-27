@@ -4,21 +4,19 @@ using UnityEngine;
 
     public class Crapz : Test
     {
-        new void Start()
+        public new void Start()
         {
             Debug.Log("Started child");
         }
 
-        new void Update()
+        public new void Update()
         {
-            base.crap();
+            base.Update();
         }
 
-        new void crap()
+        public override void crap()
         {
             Debug.Log("This is crap");
         }
-        
-        
         
     }

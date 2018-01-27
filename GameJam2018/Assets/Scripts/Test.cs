@@ -5,18 +5,20 @@ using UnityEngine;
 public class Test : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		
 		Debug.Log("Started Base");
+		
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	public void Update ()
 	{
 		crap();
+		this.crap();
 	}
 
-	public void crap()
+	public virtual void crap()
 	{
 		Debug.Log("Callled in base class");
 	}
