@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class FollowEnemy : MonoBehaviour
 {
-	public Vector3 targetVector;
+	public Vector2 targetVector;
 	private GameObject player;
 
 	// Use this for initialization
@@ -24,13 +24,13 @@ public class FollowEnemy : MonoBehaviour
 	void Update ()
 	{
 		targetVector = player.GetComponent<Transform>().position;
-		Vector3 currentVector = gameObject.GetComponent<Transform>().position;
+		Vector2 currentVector = gameObject.GetComponent<Transform>().position;
 
-		Vector3 movementVector = calulateMovement(targetVector, currentVector).normalized;
-		gameObject.transform.Translate(movementVector);
+		Vector2 movementVector = calulateMovement(targetVector, currentVector).normalized;
+		gameObject.GetComponent<Rigidbody2D>().AddForce(movementVector * 10);
 	}
 
-	Vector3 calulateMovement(Vector3 target, Vector3 current)
+	Vector2 calulateMovement(Vector2 target, Vector2 current)
 	{
 		int x = 0;
 		int y = 0;
