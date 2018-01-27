@@ -7,7 +7,7 @@ public class NewBehaviourScript : MonoBehaviour {
 
 	// Use this for initialization
 	public void Start () {
-		Console.Out.WriteLine("Whatever");
+		Console.Out.WriteLine("Whatever v");
 		
 	}
 	
