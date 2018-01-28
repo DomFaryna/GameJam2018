@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 	void Start ()
 	{
 		entity = gameObject;
-		Debug.Log(Vector3.up);
+
 	}
 	
 	// Update is called once per frame

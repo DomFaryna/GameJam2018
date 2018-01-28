@@ -1,14 +1,14 @@
 ﻿
 public class Stats
 {
-    private double speed = 1;
-    private double health = 1;
-    private double infectionHealth = 1;
-    private double infectionHealthDepleationRate = 1;
-    private double attack = 1;
-    private double infectionAttack = 1;
+    private float speed = 1;
+    private float health = 1;
+    private float infectionHealth = 1;
+    private float infectionHealthDepleationRate = 1;
+    private float attack = 1;
+    private float infectionAttack = 1;
 
-    public Stats(double speed, double health, double infectionHealth, double infectionHealthDepleationRate, double attack, double infectionAttack)
+    public Stats(float speed, float health, float infectionHealth, float infectionHealthDepleationRate, float attack, float infectionAttack)
     {
         this.speed = speed;
         this.health = health;
@@ -19,32 +19,32 @@ public class Stats
     }
 
 
-    public double Speed
+    public float Speed
     {
         get { return speed; }
     }
 
-    public double Health
+    public float Health
     {
         get { return health; }
     }
 
-    public double InfectionHealth
+    public float InfectionHealth
     {
         get { return infectionHealth; }
     }
 
-    public double InfectionHealthDepleationRate
+    public float InfectionHealthDepleationRate
     {
         get { return infectionHealthDepleationRate; }
     }
 
-    public double Attack
+    public float Attack
     {
         get { return attack; }
     }
 
-    public double InfectionAttack
+    public float InfectionAttack
     {
         get { return infectionAttack; }
     }
