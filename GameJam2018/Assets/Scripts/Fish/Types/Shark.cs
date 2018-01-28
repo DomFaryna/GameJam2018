@@ -1,7 +1,6 @@
-﻿using NUnit.Framework.Constraints;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Fish
+namespace Fish.Types
 {
     public class Shark : Fish
     {
