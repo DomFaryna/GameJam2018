@@ -10,7 +10,7 @@ namespace Fish
 	public abstract class Fish : PlayerControls
 	{
 		public Collider2D mouth;
-		public Collider2D body;
+        public Collider2D body;
 		protected Vector2 targetVector;
 		protected GameObject player;
 		protected Stats stats;
@@ -27,7 +27,7 @@ namespace Fish
 //				player.tag = "Fudge";
 			}
 		}
-
+        
 		protected virtual Vector2 findTarget()
 		{
 			return player.GetComponent<Transform>().position;
@@ -53,27 +53,28 @@ namespace Fish
 		new void Update ()
 		{
 			Vector2 currentVector = gameObject.GetComponent<Transform>().position;
-			Vector2 movementVector;
 			switch (cond)
 			{
-				case Condition.Passive:
+                case Condition.Player:
+                    playerControl(stats);
+                    break;
+
+                case Condition.Passive:
 					targetVector = player.GetComponent<Transform>().position;
-					movementVector = calulateMovement(targetVector, currentVector);
-					gameObject.GetComponent<Rigidbody2D>().AddForce(movementVector * stats.Speed);
+                    AI_Movement(targetVector, currentVector);
 					break;
-				case Condition.Player:
-					playerControl(stats);
-					break;
+				
 				case Condition.Agressive:
 					targetVector = findTarget();
-					movementVector = calulateMovement(targetVector, currentVector);
-					gameObject.GetComponent<Rigidbody2D>().AddForce(movementVector * stats.Speed);
-					break;
+                    AI_Movement(targetVector, currentVector);
+                    break;
 					
 				default:
 					Debug.Log("Not implemented yet");
 					break;
 			}
+
+
 
 			if (Input.GetKey(KeyCode.Space))
 			{
@@ -87,12 +88,42 @@ namespace Fish
 			}
 			
 		}
+        protected void AI_Movement(Vector2 targetVector, Vector2 currentVector)
+        {
+            Debug.Log(targetVector.x);
+            
+            Vector2 movementVector;
 
-		protected virtual Vector2 calulateMovement(Vector2 target, Vector2 current)
+            Vector2 distanceToTarget = targetVector - currentVector;
+            movementVector = calulateMovement(targetVector, currentVector);
+
+            gameObject.GetComponent<Rigidbody2D>().AddForce(movementVector * stats.Speed);
+
+            if (movementVector.x > 0 && distanceToTarget.x > 0)
+            {
+                transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+            else if (movementVector.x < 0 && distanceToTarget.x < 0)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+
+
+
+            }
+
+        protected virtual Vector2 calulateMovement(Vector2 target, Vector2 current)
 		{
 			Vector2 returnVector = target - current;
 			return returnVector.normalized;
 		}
-		protected abstract void ability();
+
+        protected virtual Vector2 calculateDistanceToTarget(Vector2 target, Vector2 current)
+        {
+            Vector2 returnVector = target - current;
+            return returnVector.normalized;
+        }
+
+        protected abstract void ability();
 	}
 }

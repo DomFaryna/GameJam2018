@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Fudge
+  - Live Enemy
+  - Infected Enemy
+  - Dead
   layers:
   - Default
   - TransparentFX
@@ -41,4 +44,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 993374069
+    locked: 0
+  - name: Player
+    uniqueID: 2469668995
+    locked: 0
+  - name: Enemies
+    uniqueID: 2310158329
+    locked: 0
+  - name: New Layer
+    uniqueID: 1215144303
     locked: 0
