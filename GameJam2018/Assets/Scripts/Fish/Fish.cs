@@ -37,7 +37,7 @@ namespace Fish
 		{
 			if (mouth != null && mouth.IsTouching(other) && this.GetType() == typeof(Shark))
 			{
-				Debug.Log("NOM NOM NOM");
+                Debug.Log("NOM NOM NOM");
 			}
 		}
 
@@ -99,11 +99,11 @@ namespace Fish
 
             gameObject.GetComponent<Rigidbody2D>().AddForce(movementVector * stats.Speed);
 
-            if (movementVector.x > 0 && distanceToTarget.x > 0)
+            if (movementVector.x > 0 && distanceToTarget.x > 3)
             {
                 transform.localRotation = Quaternion.Euler(0, 180, 0);
             }
-            else if (movementVector.x < 0 && distanceToTarget.x < 0)
+            else if (movementVector.x < 0 && distanceToTarget.x < -3)
             {
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
@@ -125,5 +125,7 @@ namespace Fish
         }
 
         protected abstract void ability();
+
+        
 	}
 }

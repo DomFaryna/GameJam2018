@@ -32,16 +32,21 @@ namespace Fish.Types
                 currentMouth.x = transform.position.x + 7.5f;
             }
 
-            Vector2 targetVector = player.GetComponent<Transform>().position;
-            Vector2 difference = targetVector - currentMouth;
-
-            if (difference.magnitude > 0)
+            Vector2 PlayerTarget = player.GetComponent<Transform>().position;
+            Vector2 targetDifference = PlayerTarget - currentMouth;
+            if (targetDifference.magnitude > 20)
             {
-                Random ran = new Random();
-                Vector2 he = new Vector2(ran.Next(-75, 75), ran.Next(-25, 25));
-                return he;
+                Vector2 difference = targetVector - currentMouth;
+                if (difference.magnitude < 5)
+                {
+                    Random ran = new Random();
+                    Vector2 he = new Vector2(ran.Next(-60, 60), ran.Next(-34, 23));
+                    return he;
+                }
+                return targetVector;
             }
-            return targetVector;
+
+            return PlayerTarget;
         }
 
         protected override Vector2 calulateMovement(Vector2 target, Vector2 current)
@@ -67,6 +72,11 @@ namespace Fish.Types
             gameObject.GetComponent<Rigidbody2D>().velocity = (findTarget() * 2);
             gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.zero);
+        }
+
+        protected override void attack()
+        {
+            base.attack();
         }
     }
 }
