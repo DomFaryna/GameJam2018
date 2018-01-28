@@ -58,9 +58,9 @@ namespace Fish
                 case Condition.Player:
                     playerControl(stats);
                     break;
-
+                    //player.GetComponent<Transform>().position;
                 case Condition.Passive:
-					targetVector = player.GetComponent<Transform>().position;
+					targetVector = findTarget(); 
                     AI_Movement(targetVector, currentVector);
 					break;
 				
