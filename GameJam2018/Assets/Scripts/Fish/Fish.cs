@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Fish
 {
 	public abstract class Fish : PlayerControls
 	{
+		public Collider2D mouth;
+		public Collider2D body;
 		protected Vector2 targetVector;
 		protected GameObject player;
 		protected Stats stats;
@@ -28,7 +31,23 @@ namespace Fish
 		{
 			return player.GetComponent<Transform>().position;
 		}
-	 
+
+		void OnTriggerEnter2D(Collider2D other)
+		{
+			if (mouth != null && mouth.IsTouching(other) && this.GetType() == typeof(Shark))
+			{
+				Debug.Log("NOM NOM NOM");
+			}
+		}
+
+		private void OnTriggerStay2D(Collider2D other)
+		{
+			if (mouth != null && mouth.IsTouching(other) && this.GetType() == typeof(Shark))
+			{
+				Debug.Log("NOM NOM NOM");
+			}
+		}
+
 		// Update is called once per frame
 		new void Update ()
 		{

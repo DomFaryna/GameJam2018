@@ -20,16 +20,12 @@ namespace Fish
         protected override Vector2 findTarget()
         {
             Vector2 difference = targetVector - (Vector2)gameObject.GetComponent<Transform>().position;
-            Debug.Log(targetVector + "-" + gameObject.GetComponent<Transform>().position);
-            Debug.Log("Difference!!!!" + difference.ToString());
             if (difference.magnitude < 5)
             {
                 Random ran = new Random();
                 Vector2 he = new Vector2(ran.Next(-75, 75), ran.Next(-25, 25));
-                Debug.Log(he);
                 return he;
             }
-            Debug.Log(difference);
             return targetVector;
         }
 
