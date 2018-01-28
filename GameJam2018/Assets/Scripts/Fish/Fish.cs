@@ -13,7 +13,7 @@ namespace Fish
 		private Condition cond = Condition.Passive;
 
 			// Use this for initialization
-			new void Start ()
+			new protected void Start ()
 		{
 			List<GameObject> allPlayerTags = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
 			if (allPlayerTags[0] != null)

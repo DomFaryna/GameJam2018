@@ -8,7 +8,8 @@ namespace Fish
         new void Start()
         {
             stats = new Stats(10, 10, 10, 10, 10, 10);
-            
+            base.Start();
+
         }
 
         protected override Vector2 calulateMovement(Vector2 target, Vector2 current)
