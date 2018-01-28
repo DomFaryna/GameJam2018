@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using Fish.Types;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,44 +9,90 @@ namespace Fish
 {
 	public abstract class Fish : PlayerControls
 	{
-		public Vector2 targetVector;
-		private GameObject player;
+		public Collider2D mouth;
+		public Collider2D body;
+		protected Vector2 targetVector;
+		protected GameObject player;
 		protected Stats stats;
-		private Condition cond = Condition.Passive;
-
-			// Use this for initialization
-			new protected void Start ()
+		protected Condition cond = Condition.Passive;
+		private bool isInfected;
+		
+		// Use this for initialization
+		new protected void Start ()
 		{
 			List<GameObject> allPlayerTags = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
 			if (allPlayerTags[0] != null)
 			{
 				player = allPlayerTags[0];
+//				player.tag = "Fudge";
 			}
-
 		}
-	
+
+		protected virtual Vector2 findTarget()
+		{
+			return player.GetComponent<Transform>().position;
+		}
+
+		void OnTriggerEnter2D(Collider2D other)
+		{
+			if (mouth != null && mouth.IsTouching(other) && this.GetType() == typeof(Shark))
+			{
+				Debug.Log("NOM NOM NOM");
+			}
+		}
+
+		private void OnTriggerStay2D(Collider2D other)
+		{
+			if (mouth != null && mouth.IsTouching(other) && this.GetType() == typeof(Shark))
+			{
+				Debug.Log("NOM NOM NOM");
+			}
+		}
+
 		// Update is called once per frame
 		new void Update ()
 		{
+			Vector2 currentVector = gameObject.GetComponent<Transform>().position;
+			Vector2 movementVector;
 			switch (cond)
 			{
 				case Condition.Passive:
 					targetVector = player.GetComponent<Transform>().position;
-					Vector2 currentVector = gameObject.GetComponent<Transform>().position;
-
-					Vector2 movementVector = calulateMovement(targetVector, currentVector).normalized;
-					gameObject.GetComponent<Rigidbody2D>().AddForce(movementVector * 10);
+					movementVector = calulateMovement(targetVector, currentVector);
+					gameObject.GetComponent<Rigidbody2D>().AddForce(movementVector * stats.Speed);
 					break;
 				case Condition.Player:
 					playerControl(stats);
 					break;
+				case Condition.Agressive:
+					targetVector = findTarget();
+					movementVector = calulateMovement(targetVector, currentVector);
+					gameObject.GetComponent<Rigidbody2D>().AddForce(movementVector * stats.Speed);
+					break;
+					
 				default:
 					Debug.Log("Not implemented yet");
 					break;
 			}
+
+			if (Input.GetKey(KeyCode.Space))
+			{
+				ability();
+			}
+
+			if (Input.GetKey(KeyCode.Backspace))
+			{
+				gameObject.GetComponent<Transform>().position = new Vector2(0, 0);
+				
+			}
 			
 		}
 
-		protected abstract Vector2 calulateMovement(Vector2 target, Vector2 current);
+		protected virtual Vector2 calulateMovement(Vector2 target, Vector2 current)
+		{
+			Vector2 returnVector = target - current;
+			return returnVector.normalized;
+		}
+		protected abstract void ability();
 	}
 }

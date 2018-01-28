@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: a7f195b588a27124d81f9bdf056d65be
+  - enabled: 1
+    path: Assets/Scenes/TimEdit.unity
+    guid: 858b4bfd1e1f5eb45b2298073be4a104
