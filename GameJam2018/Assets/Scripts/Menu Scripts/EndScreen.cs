@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour {
+public class EndScreen : MonoBehaviour
+{
 
-	public void PlayGame()
+    public void PlayGame()
     {
         SceneManager.LoadScene("TimEdit");
         // Link Directly to a scene
